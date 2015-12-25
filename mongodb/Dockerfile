@@ -50,8 +50,9 @@ RUN set -x \
 	&& rm -rf /var/lib/mongodb \
 	&& mv /etc/mongod.conf /etc/mongod.conf.orig
 
-RUN mkdir -p /var/data/mongodb && chown -R mongodb:mongodb /var/data/mongodb
-RUN mkdir -p /var/log/mongodb && chown -R mongodb:mongodb /var/log/mongodb
+RUN mkdir -p /var/data/mongodb && mkdir -p /var/log/mongodb \
+	&& chown -R mongodb:mongodb /var/data/mongodb \
+	&& chown -R mongodb:mongodb /var/log/mongodb
 
 VOLUME ["/var/data/mongodb", "/var/log/mongodb"]
 
@@ -60,8 +61,9 @@ COPY ./config/disable-transparent-hugepages /etc/init.d/disable-transparent-huge
 COPY ./config/docker-entrypoint.sh /entrypoint.sh
 
 RUN chown mongodb:mongodb /etc/mongod.conf
-RUN chmod 0600 /etc/mongod.conf /var/data/mongodb /var/log/mongodb
-RUN chmod 0700 /entrypoint.sh /etc/init.d/disable-transparent-hugepages
+RUN chmod 0600 /etc/mongod.conf /var/data/mongodb /var/log/mongodb \
+	&& chmod 0700 /entrypoint.sh /etc/init.d/disable-transparent-hugepages
+
 RUN update-rc.d disable-transparent-hugepages defaults
 
 ENTRYPOINT ["/entrypoint.sh"]
