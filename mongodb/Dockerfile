@@ -46,7 +46,8 @@ RUN set -x \
 		mongodb-org-shell=$MONGO_VERSION \
 		mongodb-org-mongos=$MONGO_VERSION \
 		mongodb-org-tools=$MONGO_VERSION \
-	&& rm -rf /var/lib/apt/lists/* \
+	apt-get clean autoclean && apt-get autoremove -y && \
+	rm -rf /var/lib/{apt,dpkg,cache,log}/
 	&& rm -rf /var/lib/mongodb \
 	&& mv /etc/mongod.conf /etc/mongod.conf.orig
 
