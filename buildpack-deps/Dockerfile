@@ -36,6 +36,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 		patch \
 		procps \
 		xz-utils \
-		zlib1g-dev \
+		zlib1g-dev && \
 	apt-get clean autoclean && apt-get autoremove -y && \
 	rm -rf /var/lib/{apt,dpkg,cache,log}/

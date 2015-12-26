@@ -7,10 +7,18 @@ Just some Dockerfiles for a personal project. Nothing to see here. Move along.
 
 Initially it was suggested to me to add `build-essential` to the base image but it pumps it up to ~700MB which I'm not so keen on. Let's see whether we really need it first, eh?
 
+Build with:
+
+	docker build -t garethmj/ubuntu-base:16.04 .
+
 #### mongodb
 
 *ISSUES:*
 Currently unable to disable [transparent huge pages](https://docs.mongodb.org/master/tutorial/transparent-huge-pages/) in the Ubuntu kernel.
+
+Build with:
+
+	docker build -t garethmj/mongo:3.2.0 .
 
 #### buildpack-deps
 

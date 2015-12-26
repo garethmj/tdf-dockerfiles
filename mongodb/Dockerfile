@@ -45,11 +45,11 @@ RUN set -x \
 		mongodb-org-server=$MONGO_VERSION \
 		mongodb-org-shell=$MONGO_VERSION \
 		mongodb-org-mongos=$MONGO_VERSION \
-		mongodb-org-tools=$MONGO_VERSION \
+		mongodb-org-tools=$MONGO_VERSION && \
 	apt-get clean autoclean && apt-get autoremove -y && \
-	rm -rf /var/lib/{apt,dpkg,cache,log}/
-	&& rm -rf /var/lib/mongodb \
-	&& mv /etc/mongod.conf /etc/mongod.conf.orig
+	rm -rf /var/lib/{apt,dpkg,cache,log}/ && \
+	rm -rf /var/lib/mongodb && \
+	mv /etc/mongod.conf /etc/mongod.conf.orig
 
 RUN mkdir -p /var/data/mongodb && mkdir -p /var/log/mongodb \
 	&& chown -R mongodb:mongodb /var/data/mongodb \

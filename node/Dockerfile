@@ -1,5 +1,7 @@
 FROM garethmj/buildpack-deps:16.04
 
+ENV DEBIAN_FRONTEND noninteractive
+
 # gpg keys listed at https://github.com/nodejs/node
 RUN set -ex \
   && for key in \
